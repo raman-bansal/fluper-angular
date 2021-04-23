@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "fluper-test"
+    }
+  },
+  "defaultProject": "fluper-test",
+  "cli": {
+    "analytics": false
+  }
 }

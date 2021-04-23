@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from './services/home.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fluper-test';
+  constructor(
+    private readonly homeService: HomeService
+  ) {
+    this.homeService.getMessage('App module');
+  }
 }

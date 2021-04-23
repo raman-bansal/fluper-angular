@@ -1,0 +1,5 @@
+<h3>Select any product</h3>
+<ul class="list-group">
+    <li class="list-group-item" [class.active]="selectedProduct==product?.name" (click)="highLight(product)"
+        *ngFor="let product of productList">{{product?.name}}</li>
+</ul>

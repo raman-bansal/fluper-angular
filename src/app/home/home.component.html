@@ -1,0 +1,2 @@
+<app-list-view [productList]="productList" (action)="getListEvent($event)"></app-list-view>
+<h3 *ngIf="selectedProduct">Your selected product is: {{selectedProduct?.name}}</h3>

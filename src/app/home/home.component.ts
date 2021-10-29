@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private readonly homeService: HomeService
   ) {
-    this.homeService.getMessage('Home module');
+    // this.homeService.getMessage('Home module');
   }
 
   ngOnInit(): void {

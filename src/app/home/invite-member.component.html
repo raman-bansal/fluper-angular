@@ -1,0 +1,194 @@
+<!-- <form #memberForm="ngForm"> -->
+<div class="popup-wrap relative">
+    <div class="popup-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <h5>Invite Team</h5>
+        <a href="javascript:void(0)" fxLayoutAlign="center center" (click)="onNoClick()">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16"
+                viewBox="0 0 16 16">
+                <defs>
+                    <path id="hzf08dqvaa"
+                        d="M13 4.007L11.993 3 8 6.993 4.007 3 3 4.007 6.993 8 3 11.993 4.007 13 8 9.007 11.993 13 13 11.993 9.007 8z" />
+                </defs>
+                <g fill="none" fill-rule="evenodd">
+                    <g>
+                        <mask id="pqqqblvk2b" fill="#fff">
+                            <use xlink:href="#hzf08dqvaa" />
+                        </mask>
+                        <path fill="#333" d="M0 0H16V16H0z" mask="url(#pqqqblvk2b)" />
+                    </g>
+                </g>
+            </svg>
+        </a>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="popup-content p-t-24 p-l-24 p-r-24">
+        <ng-container *ngFor="let member of memberData.controls;let index = index">
+            <div class="">
+                <div class="m-b-10" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="16px">
+                    <div class="input-container" fxFlex="45%">
+                        <div class="input-bx">
+                            <input id="" type="text" placeholder="Email address"
+                                [formControl]="memberData.controls[index].get('username')" name="username"
+                                (blur)="fillName(member)">
+                        </div>
+                    </div>
+                    <div class="input-container" fxFlex="25%">
+                        <div class="input-bx">
+                            <input id="" type="text" placeholder="Name" name="name"
+                                [formControl]="memberData.controls[index].get('name')">
+                        </div>
+                    </div>
+                    <div class="input-container invite-slect" fxFlex="25%">
+                        <mat-form-field class="select relative select-bx" [hideRequiredMarker]="true">
+                            <mat-select matNativeControl name="role" placeholder="Select role"
+                                [formControl]="memberData.controls[index].get('role')">
+                                <mat-option *ngFor="let list of roleList" [value]="list.hierarchy">{{list?.name}}
+                                </mat-option>
+                            </mat-select>
+                            <svg class="arrow-down" xmlns="http://www.w3.org/2000/svg" width="10" height="6"
+                                viewBox="0 0 10 6">
+                                <path fill="#172b4d" fill-rule="evenodd"
+                                    d="M5.723 5.701L9.701 1.74C10.1 1.34 10.1.697 9.7.299 9.3-.1 8.654-.1 8.254.299L5 3.54 1.746.3C1.346-.1.699-.1.299.299-.1.697-.1 1.34.3 1.739l3.978 3.962c.399.399 1.047.399 1.446 0z" />
+                            </svg>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="action-wrap" fxFlex="auto" fxLayout="row" fxLayoutAlign="flex-start flex-end">
+
+                        <a class="m-r-16 cursor-pointer relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="16" height="16" viewBox="0 0 16 16">
+                                <defs>
+                                    <path id="pokc4h3uva"
+                                        d="M7 0c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.14-7-7 3.14-7 7-7zm0 5.3c-.442 0-.8.358-.8.8v4.4c0 .442.358.8.8.8.442 0 .8-.358.8-.8V6.1c0-.442-.358-.8-.8-.8zm0-3.295c-.553 0-1 .448-1 1 0 .553.447 1.001 1 1.001.553 0 1-.448 1-1 0-.553-.447-1.001-1-1.001z" />
+                                </defs>
+                                <g fill="none" fill-rule="evenodd">
+                                    <g transform="translate(1 1)">
+                                        <mask id="42cra8eb8b" fill="#fff">
+                                            <use xlink:href="#pokc4h3uva" />
+                                        </mask>
+                                        <use fill="#97a0af" fill-rule="nonzero" xlink:href="#pokc4h3uva" />
+                                        <path fill="#97a0af" d="M-1 -1H15V15H-1z" mask="url(#42cra8eb8b)" />
+                                    </g>
+                                </g>
+                            </svg>
+
+                            <span class="tooltip-bx" fxLayoutAlign="start center">
+                                <span class="pointer d-block"></span>
+                                <span>Info</span>
+                            </span>
+                        </a>
+                        <a class="cursor-pointer relative" *ngIf="memberData.controls.length>1"
+                            (click)="deleteMember(index)">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="16" height="16" viewBox="0 0 16 16">
+                                <defs>
+                                    <path id="w43ojr036a"
+                                        d="M7 0c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7zm2 6H5c-.552 0-1 .448-1 1s.448 1 1 1h4c.552 0 1-.448 1-1s-.448-1-1-1z" />
+                                </defs>
+                                <g fill="none" fill-rule="evenodd">
+                                    <g>
+                                        <g>
+                                            <g>
+                                                <g>
+                                                    <g
+                                                        transform="translate(-1212 -283) translate(188 146) translate(24 129) translate(1000 8) translate(1 1)">
+                                                        <mask id="0qqmwb1ypb" fill="#fff">
+                                                            <use xlink:href="#w43ojr036a" />
+                                                        </mask>
+                                                        <use fill="#D8D8D8" xlink:href="#w43ojr036a" />
+                                                        <path fill="#FF5645" fill-rule="nonzero" d="M0 0H14V14H0z"
+                                                            mask="url(#0qqmwb1ypb)" />
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+
+                            <span class="tooltip-bx" fxLayoutAlign="start center">
+                                <span class="pointer d-block"></span>
+                                <span>Delete</span>
+                            </span>
+                        </a>
+                        <a href="javascript:void(0)" class="small-spinner"
+                            *ngIf="memberData.controls[index].get('username').status=='PENDING'">
+                            <mat-spinner [diameter]=20></mat-spinner>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="" fxLayout="row">
+                    <span class="red-color">{{memberData.controls[index].get('username').errors?.message}}</span>
+                </div>
+                <div class="input-container invite-chip m-b-16" *ngIf="data?.type=='resource'">
+                    <mat-form-field class="select relative select-bx">
+                        <mat-select matNativeControl name="resource" multiple
+                            [formControl]="memberData.controls[index].get('resources')">
+                            <mat-select-trigger>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let resource of memberData.controls[index].get('resources').value"
+                                        [removable]="true" (removed)="onResourceRemoved(resource,index)">
+                                        {{ resource }}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let resource of data?.resourceGroupList" [value]="resource.name">
+                                {{resource?.name}}
+                            </mat-option>
+
+                        </mat-select>
+                        <svg class="arrow-down" xmlns="http://www.w3.org/2000/svg" width="10" height="6"
+                            viewBox="0 0 10 6">
+                            <path fill="#172b4d" fill-rule="evenodd"
+                                d="M5.723 5.701L9.701 1.74C10.1 1.34 10.1.697 9.7.299 9.3-.1 8.654-.1 8.254.299L5 3.54 1.746.3C1.346-.1.699-.1.299.299-.1.697-.1 1.34.3 1.739l3.978 3.962c.399.399 1.047.399 1.446 0z" />
+                        </svg>
+                    </mat-form-field>
+                </div>
+            </div>
+        </ng-container>
+
+
+
+        <div class="cursor-pointer m-t-24 m-b-16 d-inlineblock">
+            <a class="semi-bold" fxLayout="row" fxLayoutAlign="flex-start center" href="javascript:void(0)"
+                (click)="addMember()">
+                <svg class="m-r-8" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    width="16" height="16" viewBox="0 0 16 16">
+                    <defs>
+                        <path id="jf6i4mjpra"
+                            d="M9.91 8.09c1.405 0 2.545-1.138 2.545-2.545C12.455 4.14 11.315 3 9.909 3S7.364 4.14 7.364 5.545c0 1.407 1.139 2.546 2.545 2.546zM4.181 4.91H2.909v1.908H1v1.273h1.91V10h1.272V8.09H6.09V6.819H4.18V4.91zm5.727 4.454c-1.699 0-5.09.852-5.09 2.545v1.273H15v-1.273c0-1.693-3.392-2.545-5.09-2.545z" />
+                    </defs>
+                    <g fill="none" fill-rule="evenodd">
+                        <g>
+                            <mask id="ug4yk9nfeb" fill="#fff">
+                                <use xlink:href="#jf6i4mjpra" />
+                            </mask>
+                            <use fill="#000" xlink:href="#jf6i4mjpra" />
+                            <path fill="#2883f3" d="M0 0H16V16H0z" mask="url(#ug4yk9nfeb)" />
+                        </g>
+                    </g>
+                </svg>
+                Add Another
+            </a>
+
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div class="footer p-16">
+        <div class="btn-wrap" fxLayout="row" fxLayoutAlign="flex-end center">
+            <button mat-button class="btn-tertiary m-r-8" (click)="onNoClick()">Cancel</button>
+            <button fxFlex="96px" mat-button class="btn-primary" [disabled]="memberData.invalid || memberData.pending"
+                (click)="addUser()">
+                <ng-container *ngIf="btnLoader; else textTemp">
+                    <mat-spinner [diameter]=20></mat-spinner>
+                </ng-container>
+                <ng-template #textTemp> Send Invite </ng-template>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- </form> -->

@@ -1,0 +1,50 @@
+<div class="text-center">
+    <h2 class="m-b-24 primary2-clr">Check your email for a code</h2>
+    <div class="declaration txt-14">
+        <span>We’ve sent a 6-digit code to <strong>{{emailId | hideEmail}}</strong></span>
+        <p class="m-t-8 txt-14">The code expires shortly, so please enter it soon.</p>
+    </div>
+    <div class="m-t-32" fxLayoutGap="6px" fxLayoutAlign="center center" id="otp-field"
+        (keyup)="getKey($event.key, $event.target.id)" (paste)="pasteOtp($event)">
+        <div fxFlex="initial" fxLayout="row" class="otp-bx">
+            <input type="number" min="0" max="9" fxFlex="55px" id="1" name="1" maxlength="1" required>
+            <input type="number" min="0" max="9" fxFlex="55px" id="2" name="2" maxlength="1" required>
+            <input type="number" min="0" max="9" fxFlex="55px" id="3" name="3" maxlength="1" required>
+        </div>
+        <span fxFlex="initial" class="od">-</span>
+        <div fxFlex="initial" fxLayout="row" class="otp-bx">
+            <input type="number" min="0" max="9" fxFlex="55px" id="4" name="4" maxlength="1" required>
+            <input type="number" min="0" max="9" fxFlex="55px" id="5" name="5" maxlength="1" required>
+            <input type="number" min="0" max="9" fxFlex="55px" id="6" name="6" maxlength="1" required>
+        </div>
+    </div>
+
+    <div class="m-t-32 otp-loader">
+        <ng-container *ngIf="timerOn">
+            <span id="timer">
+            </span>
+        </ng-container>
+        <ng-container *ngIf="loader">
+            <div fxLayoutAlign="center">
+                <mat-spinner [diameter]="20"></mat-spinner>
+            </div>
+            <p class="txt-12 m-t-8">Verifying OTP</p>
+        </ng-container>
+        <ng-container *ngIf="!loader && showBtn">
+            <a href="javascript:void(0)" (click)="resendOtp()" aria-label="blank" fxLayoutAlign="center center">
+                <mat-spinner *ngIf="btnLoader" [diameter]=18></mat-spinner>
+                <span class="txt-12 semi-bold">Resend OTP</span>
+            </a>
+        </ng-container>
+    </div>
+    <div class="m-t-48" fxLayoutAlign="center center">
+        <a href="javascript:void(0)" routerLink="/vwv/v1" aria-label="blank" fxLayoutAlign="start center"
+            class="txt-12 semi-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 0 24 24" width="16">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" fill="#2883f3" />
+            </svg>
+            <span class="semi-bold">Back to log in</span>
+        </a>
+    </div>
+</div>

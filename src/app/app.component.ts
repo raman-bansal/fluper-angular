@@ -11,6 +11,17 @@ export class AppComponent {
   constructor(
     private readonly homeService: HomeService
   ) {
+    // this.group.controls[this.field.id].valueChanges.pipe(
+    //   debounceTime(300),
+    //   distinctUntilChanged(),
+    //   switchMap((value)=>of(obj))
+    // ).subscribe((res)=>{
+    //   if(res){
+    //   }
+    // });
+
+
+
     // this.homeService.getMessage('App module');
     let arr = [2, 3, 8, 10, 15, 20];
     let elem = 15
